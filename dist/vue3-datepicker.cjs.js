@@ -664,7 +664,9 @@ var script = vue.defineComponent({
             }
         });
         vue.watchEffect(() => (input.value =
-            props.modelValue && dateFns.isValid(props.modelValue)
+            props.modelValue
+                && dateFns.isValid(props.modelValue)
+                && props.inputFormat.length === input.value.length
                 ? dateFns.format(props.modelValue, props.inputFormat, {
                     locale: props.locale,
                 })

@@ -692,7 +692,9 @@ var script = defineComponent({
             }
         });
         watchEffect(() => (input.value =
-            props.modelValue && isValid(props.modelValue)
+            props.modelValue
+                && isValid(props.modelValue)
+                && props.inputFormat.length === input.value.length
                 ? format(props.modelValue, props.inputFormat, {
                     locale: props.locale,
                 })
