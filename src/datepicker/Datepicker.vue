@@ -300,11 +300,13 @@ export default defineComponent({
     watchEffect(
       () =>
         (input.value =
-          props.modelValue && isValid(props.modelValue)
-            ? format(props.modelValue, props.inputFormat, {
-                locale: props.locale,
-              })
-            : '')
+          props.modelValue
+            && isValid(props.modelValue)
+              && props.inputFormat.length === input.value.length
+                ? format(props.modelValue, props.inputFormat, {
+                    locale: props.locale,
+                  })
+                : '')
     )
 
     const renderView = (view: typeof viewShown.value = 'none') => {
