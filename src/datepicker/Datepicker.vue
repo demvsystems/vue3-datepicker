@@ -224,13 +224,11 @@ export default defineComponent({
     watchEffect(
       () =>
         (input.value =
-          props.modelValue
-            && isValid(props.modelValue)
-              && props.inputFormat.length === input.value.length
-                ? format(props.modelValue, props.inputFormat, {
-                    locale: props.locale,
-                  })
-                : '')
+          props.modelValue && isValid(props.modelValue)
+            ? format(props.modelValue, props.inputFormat, {
+                locale: props.locale,
+              })
+            : '')
     )
 
     const renderView = (view: typeof viewShown.value = 'none') => {
@@ -288,7 +286,7 @@ export default defineComponent({
           new Date(),
           { locale: props.locale }
         )
-        if (isValid(parsedDate)) {
+        if (isValid(parsedDate) && input.value.length === props.inputFormat.length) {
           input.value = inputRef.value!.value
           emit('update:modelValue', parsedDate)
         }
