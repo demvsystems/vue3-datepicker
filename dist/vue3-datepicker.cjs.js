@@ -664,9 +664,7 @@ var script = vue.defineComponent({
             }
         });
         vue.watchEffect(() => (input.value =
-            props.modelValue
-                && dateFns.isValid(props.modelValue)
-                && props.inputFormat.length === input.value.length
+            props.modelValue && dateFns.isValid(props.modelValue)
                 ? dateFns.format(props.modelValue, props.inputFormat, {
                     locale: props.locale,
                 })
@@ -720,7 +718,7 @@ var script = vue.defineComponent({
             }
             if (props.typeable) {
                 const parsedDate = dateFns.parse(inputRef.value.value, props.inputFormat, new Date(), { locale: props.locale });
-                if (dateFns.isValid(parsedDate)) {
+                if (dateFns.isValid(parsedDate) && input.value.length === props.inputFormat.length) {
                     input.value = inputRef.value.value;
                     emit('update:modelValue', parsedDate);
                 }

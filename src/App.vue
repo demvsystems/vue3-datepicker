@@ -10,12 +10,14 @@
       "
       class="picker"
       v-model="selected"
+      inputFormat="dd.MM.yyyy"
       :locale="locale"
       :upperLimit="to"
       :lowerLimit="from"
       :clearable="true"
+			:disabledDates="{ predicate: isToday }"
+      typeable
       dayFormat="d"
-      :disabledDates="{ predicate: isToday }"
     >
       <template v-slot:clear="{ onClear }">
         <button @click="onClear">x</button>
@@ -124,7 +126,7 @@
 <script>
 import Datepicker from './datepicker/Datepicker.vue'
 import { defineComponent } from 'vue'
-import { enUS } from 'date-fns/locale'
+import { de } from 'date-fns/locale'
 import { isSameDay, set } from 'date-fns'
 
 export default defineComponent({
@@ -137,7 +139,7 @@ export default defineComponent({
       time: null,
       full: null,
       selected: null,
-      from: null,
+      from: new Date(21-11-1989),
       to: null,
       yearSelected: null,
       monthSelected: null,
@@ -148,7 +150,7 @@ export default defineComponent({
     }
   },
   computed: {
-    locale: () => enUS,
+    locale: () => de,
   },
   watch: {
     selected: (value) => console.log(value),
