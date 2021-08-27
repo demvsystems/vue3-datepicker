@@ -43,7 +43,8 @@
     "build:demo": "vite build",
     "dev:docs": "vitepress dev docs",
     "build:component": "rollup -c build/rollup.config.js",
-    "build:docs": "vitepress build docs"
+    "build:docs": "vitepress build docs",
+    "prepare": "npm run build:component"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.4",
